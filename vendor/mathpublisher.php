@@ -525,7 +525,7 @@ function affiche_symbol($texte, $haut)
 			if (isset($symboles[$texte])) {
 				$texte = $symboles[$texte];
 			}
-			var_dump($font);
+
 			do {
 				$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 				$t+=1;
@@ -591,6 +591,7 @@ function affiche_symbol($texte, $haut)
 			if (isset($symboles[$texte])) {
 				$texte = $symboles[$texte];
 			}
+			var_dump($font);
 			do {
 				$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 				$t+=1;
