@@ -423,7 +423,7 @@ function affiche_symbol($texte, $haut)
 			$font = $dirfonts . "/" . $fontesmath[$texte] . ".ttf";
 			$t = 16;
 			$texte = $symboles[$texte];
-			$tmp_dim = ImageTTFBBox($t, 0, $font, $texte);
+			$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 			$tmp_largeur = abs($tmp_dim[2] - $tmp_dim[0]) + 2;
 			$tmp_hauteur = abs($tmp_dim[3] - $tmp_dim[5]) + 2;
 			$tmp_img = ImageCreate(max($tmp_largeur, 1), max($tmp_hauteur, 1));
@@ -469,7 +469,7 @@ function affiche_symbol($texte, $haut)
 			$font = $dirfonts . "/" . $fontesmath[$texte] . ".ttf";
 			$t = $haut;
 			$texte = $symboles[$texte];
-			$tmp_dim = ImageTTFBBox($t, 0, $font, $texte);
+			$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 			$tmp_largeur = abs($tmp_dim[2] - $tmp_dim[0]);
 			$tmp_hauteur = abs($tmp_dim[3] - $tmp_dim[5]) * 4;
 			$tmp_img = ImageCreate(max($tmp_largeur, 1), max($tmp_hauteur, 1));
@@ -525,8 +525,9 @@ function affiche_symbol($texte, $haut)
 			if (isset($symboles[$texte])) {
 				$texte = $symboles[$texte];
 			}
+			debug($font);
 			do {
-				$tmp_dim = ImageTTFBBox($t, 0, $font, $texte);
+				$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 				$t+=1;
 			} while ((abs($tmp_dim[3] - $tmp_dim[5]) < 1.2 * $haut));
 			$tmp_largeur = abs($tmp_dim[2] - $tmp_dim[0]) * 2;
@@ -591,7 +592,7 @@ function affiche_symbol($texte, $haut)
 				$texte = $symboles[$texte];
 			}
 			do {
-				$tmp_dim = ImageTTFBBox($t, 0, $font, $texte);
+				$tmp_dim = imagettfbbox($t, 0, $font, $texte);
 				$t+=1;
 			} while ((abs($tmp_dim[3] - $tmp_dim[5]) < $haut));
 			$tmp_largeur = abs($tmp_dim[2] - $tmp_dim[0]) * 2;
@@ -657,8 +658,8 @@ function affiche_texte($texte, $taille)
 	$texte = stripslashes($texte);
 	$font = $dirfonts . "/cmr10.ttf";
 	$htexte = 'dg' . $texte;
-	$hdim = ImageTTFBBox($taille, 0, $font, $htexte);
-	$wdim = ImageTTFBBox($taille, 0, $font, $texte);
+	$hdim = imagettfbbox($taille, 0, $font, $htexte);
+	$wdim = imagettfbbox($taille, 0, $font, $texte);
 	$dx = max($wdim[2], $wdim[4]) - min($wdim[0], $wdim[6]) + ceil($taille / 8);
 	$dy = max($hdim[1], $hdim[3]) - min($hdim[5], $hdim[7]) + ceil($taille / 8);
 	$img = ImageCreate(max($dx, 1), max($dy, 1));
@@ -690,8 +691,8 @@ function affiche_math($texte, $taille)
 		$texte = $symboles[$texte];
 	}
 	$htexte = 'dg' . $texte;
-	$hdim = ImageTTFBBox($taille, 0, $font, $htexte);
-	$wdim = ImageTTFBBox($taille, 0, $font, $texte);
+	$hdim = imagettfbbox($taille, 0, $font, $htexte);
+	$wdim = imagettfbbox($taille, 0, $font, $texte);
 	$dx = max($wdim[2], $wdim[4]) - min($wdim[0], $wdim[6]) + ceil($taille / 8);
 	$dy = max($hdim[1], $hdim[3]) - min($hdim[5], $hdim[7]) + ceil($taille / 8);
 	$img = ImageCreate(max($dx, 1), max($dy, 1));
